@@ -68,7 +68,7 @@ public class Application extends Controller {
 
     private static Status handleEtag(JsonNode json) {
         final String askedEtag = request().getHeader(Controller.IF_NONE_MATCH);
-        if (askedEtag.equals(ETagHelper.getMd5Digest(json.toString().getBytes()))) {
+        if (askedEtag != null && askedEtag.equals(ETagHelper.getMd5Digest(json.toString().getBytes()))) {
             return status(NOT_MODIFIED);
         }
         else {
