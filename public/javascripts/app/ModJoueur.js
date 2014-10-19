@@ -1,10 +1,10 @@
 /**
- * Module contenant le CU accueil de l'application
+ * Module contenant le CU Joueur de l'application
  */
 var modJoueur = angular.module("ping.joueur", []);
 
 /* 
- * Routage de ces contrôleurs
+ * Routage
  */	
 pingApp.config(['$routeProvider',
 		function($routeProvider) {
@@ -12,35 +12,38 @@ pingApp.config(['$routeProvider',
   				when('/joueurs/:licence', {
     				templateUrl: 'partials/joueur.html',
     				controller: 'JoueurCtrl'
-  				})
+  				}).
+          when('/joueurs/', {
+            templateUrl: 'partials/joueur.html',
+            controller: 'JoueurCtrl'
+          })
   		}
 ])
 
 /**
- * Controleur
+ * Le Controleur
  */
 modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur", function($scope, $routeParams, ComposantJoueur) {
-  $scope.messageWait = "Chargement des données ..."
+  $scope.messageWait = "";
   $scope.licence = $routeParams.licence;
-  ComposantJoueur.consulterJoueur($scope.licence).then(
-    function(joueur) {
-      $scope.joueur = joueur;
-      $scope.messageWait = "";
-    }
-  );  
-  $scope.rechercher = function() {
+  
+  if ($scope.licence !== undefined) {
     $scope.messageWait = "Chargement des données ..."
     ComposantJoueur.consulterJoueur($scope.licence).then(
       function(joueur) {
         $scope.joueur = joueur;
         $scope.messageWait = "";
       }
-    ); 
+    );  
+  }
+  
+  $scope.rechercher = function() {
+    if ($scope.licence !== undefined) { location.hash = "#/joueurs/" + $scope.licence; }
   }  
 }]);
 
 /**
- * Service rechercherListe
+ * La collection de services
  */
 modJoueur.factory("ComposantJoueur", ["$q", "toolbox_http", function($q, toolbox_http) {
    return {

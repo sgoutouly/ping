@@ -1,8 +1,10 @@
 
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
-<input placeholder="Filtrer les listes ..." class="input-text row" ng-model="licence" />
-<!--button class="button pas icon-check" ng-click="rechercher()"></button-->
-<ul class="pa0">
+<form ng-submit='rechercher()' name="form" novalidate>  
+    <input placeholder="Saisir le numero de licence ..." class="input-text row" ng-model="licence" />
+</form>
+
+<ul class="pa0" ng-if="joueur">
     <div class="w100 animation-liste-fade-left">
         <div class="item w100">
             {{joueur.nom}} {{joueur.prenom}} ({{joueur.licence}})<br/>

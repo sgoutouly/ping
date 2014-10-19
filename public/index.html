@@ -25,10 +25,10 @@
 			</div>
 			<ul class="mt2" ng-controller="MenuCtrl">
 				<li class="menu-item" ng-class="navClass('listesEnCours')">
-					<a href="#/listesEnCours"><span>Les listes en cours</span></a>
+					<a href="#/joueurs/"><span>Rechercher un joueur</span></a>
 				</li>
 				<li class="menu-item" ng-class="navClass('creationListe')">
-					<a href="#/creationListe"><span>Créer une liste vierge</span></a>
+					<a href="#/creationListe"><span>Rechercher un club</span></a>
 				</li> 
 				<li class="menu-item" ng-class="navClass('openChat')">
 					<a href="#/openChat	"><span>Rejoindre le chat</span></a>
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-	<div ng-view class="pas animation-fade">
+	<div ng-view class="bigger pas animation-fade">
 		<p class="txtcenter wait h3-like">Chargement des données ...</p>
 	</div>
 	<script type="text/javascript" charset="utf-8" src="javascripts/lib/angular.min.js"></script>
