@@ -49,7 +49,7 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
   }
   else if($scope.nom !== undefined) {
     $scope.messageWait = "Chargement des données ..."
-    ComposantJoueur.rechercherJoueurs($scope.nom).then(
+    ComposantJoueur.rechercherJoueurs($scope.nom, $scope.prenom).then(
       function(data) {
         $scope.joueurs = data.joueurs;
         $scope.messageWait = "";
@@ -83,7 +83,7 @@ modJoueur.factory("ComposantJoueur", ["$q", "toolbox_http", function($q, toolbox
     }
     ,
     rechercherJoueurs: function(nom, prenom) {
-      var joueurs = toolbox_http.get("/joueurs?n=" + nom + "&p=" + (prenom !== undefined ? prenom : ""));
+      var joueurs = toolbox_http.get("/joueurs?n=" + nom + "&p=" + prenom));
       return joueurs;
     }
   }
