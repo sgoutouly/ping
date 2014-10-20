@@ -1,5 +1,5 @@
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
-<input ng-if="joueurs" placeholder="Filtrer les joueurs ..." class="input-text row" ng-model="f" />
+<input ng-show="joueurs" placeholder="Filtrer les joueurs ..." class="input-text row" ng-model="f" />
 <ul ng-if="joueurs" class="pa0" class="list">
     <li class="mb1 animation-liste-fade-left" data-ng-repeat="joueur in joueurs | filter:f">
         <div class="item w100" ng-class-odd="'odd'" ng-click="consulter(joueur.licence)" >
