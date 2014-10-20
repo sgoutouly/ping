@@ -32,6 +32,17 @@ public class Application extends Controller {
         return joueur.map(json -> handleEtag(json));
     }
 
+    public static Promise<Result> joueurs(String nom, String prenom) throws Exception {
+        Promise<JsonNode> joueur = Cache.getOrElse(
+                "joueurs_" + nom + "_" + prenom,
+                () -> WS.url("http://www.fftt.com/mobile/xml/xml_liste_joueur.php?nom=" + nom + "&prenom=" + prenom ).get().map(
+                        response -> XmlToJson.forJoueurs(response.getBody())
+                ),
+                60 * 60 * 1 // 1 heure en cache
+        );
+        return joueur.map(json -> handleEtag(json));
+    }
+
     /**
      * @param numero
      * @return

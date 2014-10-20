@@ -1,6 +1,9 @@
 GET     /joueurs/:licence           controllers.Application.joueur(licence:String)
+GET     /joueurs                   controllers.Application.joueurs(n:String, p ?="")
+
 GET     /clubs/:numero              controllers.Application.club(numero:String)
 GET     /clubs/:numero/joueurs      controllers.Application.joueursByClub(numero:String)
+
 GET     /                           controllers.Assets.at(path="/public", file = "index.html")
 
 # Map static resources from the /public folder to the /assets URL path
