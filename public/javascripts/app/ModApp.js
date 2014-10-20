@@ -8,9 +8,7 @@ var pingApp = angular.module("ping", [
   	"ToolBox.services", 
   	"common.menu",
 	"common.errors",
-  	"ping.accueil",
-	"ping.clubs",
-	"ping.club",
+	"ping.club", 
 	"ping.joueur"
 ]);
 

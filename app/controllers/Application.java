@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.cache.Cache;
 import play.libs.F.Promise;
 import play.libs.ws.WS;
@@ -25,7 +26,13 @@ public class Application extends Controller {
         Promise<JsonNode> joueur = Cache.getOrElse(
             "joueur_" + licence,
             () -> WS.url("http://www.fftt.com/mobile/xml/xml_joueur.php?licence=" + licence).get().map(
-                response -> XmlToJson.forJoueur(response.getBody())
+                response -> {
+                    ObjectNode json = XmlToJson.forJoueur(response.getBody());
+                    System.err.println(json.get("point").asInt() - json.get("apoint").asInt());
+                    json.put("progmois", json.get("point").asInt() - json.get("apoint").asInt());
+                    json.put("progann", json.get("point").asInt() - json.get("valinit").asInt());
+                    return json;
+                }
             ),
             60 * 60 * 1 // 1 heure en cache
         );

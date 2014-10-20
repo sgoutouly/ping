@@ -1,26 +1,22 @@
-
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
-<form ng-submit='rechercher()' name="form" novalidate>  
-    <input placeholder="Saisir le numero de licence du joueur ..." class="input-text row" ng-model="licence" />
-    <input placeholder="Saisir le nom du joueur ..." class="input-text row" ng-model="nom" />
-    <input placeholder="Saisir le prenom du joueur ..." class="input-text row" ng-model="prenom" />
-    <input type=submit class="visually-hidden" />
-</form>
-
-<ul class="pa0" ng-if="joueur">
-    <div class="w100 animation-liste-fade-left">
-        <div class="item w100">
-            {{joueur.nom}} {{joueur.prenom}} ({{joueur.licence}})<br/>
-            {{joueur.club}} ({{joueur.nclub}})
-        </div>         
-        <div class="item w100">Classement global : {{joueur.clglob}}</div> 
-        <div class="item w100">Points mensuels : {{joueur.point}}</div> 
-        <div class="item w100">Classement officiel : {{joueur.clast}} - {{joueur.valcla}}</div>
-        <div class="item w100">Rang national : {{joueur.clnat}}</div>
-        <div class="item w100">Catégorie : {{joueur.categ}}</div>
-        <div class="item w100">Rang régional : {{joueur.rangreg}}</div>
-        <div class="item w100">Rang départemental : {{joueur.rangdep}}</div>
-        <div class="item w100">Classement Pro : {{joueur.clpro}}</div>
-        <div class="item w100">Points début de saison : {{joueur.valinit}}</div>
+<div class="w100 animation-liste-fade-left" ng-if="joueur">
+    <div class="item w100">
+        {{joueur.nom}} {{joueur.prenom}} -  [{{joueur.categ}}]<br/>
+        {{joueur.licence}}<br/>
+        {{joueur.club}}
     </div>
-</ul>
+    <div class="item w100 odd"></div>
+    <div class="item w100">Classement officiel : {{joueur.clast}} - {{joueur.valcla}}</div>
+    <div class="item w100">Points début de saison : {{joueur.valinit}}</div>
+    <div class="item w100">Points mensuels : {{joueur.point}}</div>
+    <div class="item w100">Progression mensuelle : {{joueur.progmois}}</div>
+    <div class="item w100">Progression annuelle : {{joueur.progann}}</div>
+    <div class="item w100 odd"></div>
+    <div class="item w100">Rang national : {{joueur.clnat}}</div>
+    <div class="item w100">Rang régional : {{joueur.rangreg}}</div>
+    <div class="item w100">Rang départemental : {{joueur.rangdep}}</div>
+
+    <!--div class="item w100">Classement global : {{joueur.clglob}}</div-->
+    <!--div class="item w100">Classement Pro : {{joueur.clpro}}</div-->
+</div>
+<button class="button w100 icon icon-uncheck" ng-click="fermer()">Nouvelle recherche</button>
