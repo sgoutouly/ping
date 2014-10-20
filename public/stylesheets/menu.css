@@ -28,11 +28,9 @@
 
 .inner-menu {
 	position:absolute;
-	height:100%;	
-	background: -webkit-gradient(linear, left top, left bottom, 
-		color-stop(0%, rgb(37, 77, 3)),
-		color-stop(100%, rgb(67, 94, 4)) );
-	color: rgb(240, 240, 240);	
+	height:100%;
+	background-color: #6FA569;
+	color: rgb(240, 240, 240);
 }
 
 .menu.show {
