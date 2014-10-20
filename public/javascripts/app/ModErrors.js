@@ -9,7 +9,7 @@ var modErrors = angular.module("common.errors", []);
 pingApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.when('/404', {
-			templateUrl: 'partials/errors.html',
+			templateUrl: '/assets/partials/errors.html',
 			controller : 'ErrorCtrl'
 		}).
 		otherwise({

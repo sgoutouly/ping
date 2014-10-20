@@ -1,7 +1,10 @@
 
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
 <form ng-submit='rechercher()' name="form" novalidate>  
-    <input placeholder="Saisir le numero de licence ..." class="input-text row" ng-model="licence" />
+    <input placeholder="Saisir le numero de licence du joueur ..." class="input-text row" ng-model="licence" />
+    <input placeholder="Saisir le nom du joueur ..." class="input-text row" ng-model="nom" />
+    <input placeholder="Saisir le prenom du joueur ..." class="input-text row" ng-model="prenom" />
+    <input type=submit class="visually-hidden" />
 </form>
 
 <ul class="pa0" ng-if="joueur">

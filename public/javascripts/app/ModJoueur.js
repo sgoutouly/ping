@@ -10,13 +10,21 @@ pingApp.config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider.
   				when('/joueurs/:licence', {
-    				templateUrl: 'partials/joueur.html',
+    				templateUrl: '/assets/partials/joueur.html',
     				controller: 'JoueurCtrl'
   				}).
-          when('/joueurs/', {
-            templateUrl: 'partials/joueur.html',
+          when('/clubs/:numero/joueurs', {
+            templateUrl: '/assets/partials/joueurs.html',
             controller: 'JoueurCtrl'
-          })
+          }).
+          when('/rechJoueurs', {
+            templateUrl: '/assets/partials/joueurs.html',
+            controller: 'JoueurCtrl'
+          }).
+          otherwise({
+            templateUrl: '/assets/partials/joueur.html',
+            controller: 'JoueurCtrl'
+          });
   		}
 ])
 
@@ -24,9 +32,12 @@ pingApp.config(['$routeProvider',
  * Le Controleur
  */
 modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur", function($scope, $routeParams, ComposantJoueur) {
+
   $scope.messageWait = "";
   $scope.licence = $routeParams.licence;
-  
+  $scope.nom = $routeParams.nom;
+  $scope.prenom = $routeParams.prenom;
+
   if ($scope.licence !== undefined) {
     $scope.messageWait = "Chargement des données ..."
     ComposantJoueur.consulterJoueur($scope.licence).then(
@@ -36,10 +47,29 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
       }
     );  
   }
-  
+  else if($scope.nom !== undefined) {
+    $scope.messageWait = "Chargement des données ..."
+    ComposantJoueur.rechercherJoueurs($scope.nom).then(
+      function(data) {
+        $scope.joueurs = data.joueurs;
+        $scope.messageWait = "";
+      }
+    ); 
+  }
+
   $scope.rechercher = function() {
-    if ($scope.licence !== undefined) { location.hash = "#/joueurs/" + $scope.licence; }
-  }  
+    if ($scope.licence !== undefined) { 
+      location.hash = "#/joueurs/" + $scope.licence; 
+    }
+    else if ($scope.nom !== undefined) { 
+      location.hash = "#/rechJoueurs?nom=" + $scope.nom + "&prenom=" + ($scope.prenom !== undefined ? $scope.prenom : ""); 
+    }
+  }
+
+  $scope.consulter = function(licence) {
+    location.hash = "#/joueurs/" + licence; 
+  }
+
 }]);
 
 /**
@@ -51,5 +81,10 @@ modJoueur.factory("ComposantJoueur", ["$q", "toolbox_http", function($q, toolbox
       var joueur = toolbox_http.get("/joueurs/" + licence);
       return joueur;
     }
-   }
+    ,
+    rechercherJoueurs: function(nom, prenom) {
+      var joueurs = toolbox_http.get("/joueurs?n=" + nom + "&p=" + (prenom !== undefined ? prenom : ""));
+      return joueurs;
+    }
+  }
 }]);

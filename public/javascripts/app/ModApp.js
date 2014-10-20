@@ -5,13 +5,12 @@ var pingApp = angular.module("ping", [
 	"ngRoute", 
 	"ngAnimate", 
 	"ToolBox.directives", 
-  "ToolBox.services", 
-  "common.menu",
+  	"ToolBox.services", 
+  	"common.menu",
 	"common.errors",
-  "ping.accueil",
+  	"ping.accueil",
 	"ping.clubs",
 	"ping.club",
-	"ping.joueurs",
 	"ping.joueur"
 ]);
 

@@ -10,7 +10,7 @@ pingApp.config(['$routeProvider',
 		function($routeProvider) {
 			$routeProvider.
   				when('/clubs', {
-    				templateUrl: 'partials/clubs.html',
+    				templateUrl: '/assets/partials/clubs.html',
     				controller: 'ClubsCtrl'
   				})
   		}
