@@ -33,6 +33,8 @@ pingApp.config(['$routeProvider',
  */
 modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur", function($scope, $routeParams, ComposantJoueur) {
 
+  $scope.joueurs = undefined;
+  $scope.joueur = undefined;
   $scope.messageWait = "";
   $scope.licence = $routeParams.licence;
   $scope.nom = $routeParams.nom;
