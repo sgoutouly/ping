@@ -16,10 +16,6 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Application extends Controller {
 
-    public static Result home() {
-        return found("/assets/index.html");
-    }
-
     /**
      * @param licence
      * @return
