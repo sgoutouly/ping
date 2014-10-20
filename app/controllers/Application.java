@@ -32,6 +32,13 @@ public class Application extends Controller {
         return joueur.map(json -> handleEtag(json));
     }
 
+    /**
+     *
+     * @param nom
+     * @param prenom
+     * @return
+     * @throws Exception
+     */
     public static Promise<Result> joueurs(String nom, String prenom) throws Exception {
         Promise<JsonNode> joueur = Cache.getOrElse(
                 "joueurs_" + nom + "_" + prenom,
