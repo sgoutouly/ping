@@ -8,13 +8,12 @@
         <a href="{{club.web}}">{{club.web}}</a><br/>
     </div>
     <div class="item w100 odd"></div>
-    <div class="item w100">Contact :
+    <div class="item w100">
     {{club.nomcor}} {{club.prenomcor}}<br/>
     Tel : {{club.telcor}}<br/>
     Email : {{club.mailcor}}
     </div>
     <div class="item w100 odd"></div>
-
+    <button class="row button" ng-click="licencies()">Voir les licenciés ...</button>
+    <button class="button w100 icon icon-uncheck" ng-click="fermer()">Nouvelle recherche</button>
 </div>
-<button class="row button" ng-click="licencies()">Voir les licenciés ...</button>
-<button class="button w100 icon icon-uncheck" ng-click="fermer()" ng-if="club">Nouvelle recherche</button>

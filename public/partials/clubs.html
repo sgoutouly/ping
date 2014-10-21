@@ -4,7 +4,8 @@
     <li class="mb1 animation-liste-fade-left" data-ng-repeat="club in clubs | filter:f">
         <div class="item w100" ng-class-odd="'odd'" ng-click="consulter(club.numero)" >
             <div class="txtleft">
-                <span>{{club.nom}}</span><span class="right">{{club.numero}}</span>
+                <span>{{club.nom}}</span><br/>
+                <span>{{club.numero}}</span>
             </div>
         </div>
     </li>

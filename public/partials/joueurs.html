@@ -4,7 +4,8 @@
     <li class="mb1 animation-liste-fade-left" data-ng-repeat="joueur in joueurs | filter:f">
         <div class="item w100" ng-class-odd="'odd'" ng-click="consulter(joueur.licence)" >
             <div class="txtleft">
-            	<span>{{joueur.nom}} {{joueur.prenom}} <br/> {{joueur.club}}</span><span class="right">{{joueur.clast}}</span>
+            	<span>{{joueur.nom}} {{joueur.prenom}} <br/> {{joueur.club}}</span>
+                <span class="right">{{joueur.clast}}</span>
             </div>
         </div>	        
     </li>
