@@ -1,13 +1,20 @@
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
-<ul class="pa0">
-    <li class="item w100 animation-liste-fade-left" ng-repeat="course in formCourses" ng-class-odd="'odd'">
-        <div class="txtleft">
-            <span> {{course.designation}}</span><span class="pls">({{course.qte}})</span><span class="pls">({{course.unite}})</span>
-            <button class="icon-cross right" ng-click="deleteCourse($index)"></button>
-        </div>
-    </li>
-</ul>
-<div class="txtcenter">
-    <button class="button w49 left mt1 icon icon-check" ng-disabled="formCourses.length == 0" ng-click="saveListe()">Enregistrer la liste</button>
-    <button class="button w49 right mt1 icon icon-uncheck" ng-click="goHome()">Annuler</button>
+<div class="w100 animation-liste-fade-left" ng-if="club">
+    <div class="item w100">
+        {{club.nom}} -  [{{club.numero}}]<br/>
+        {{club.adressesalle1}}<br/>
+        {{club.adressesalle2}}<br/>
+        {{club.codepsalle}} {{club.villesalle}}<br/>
+        <a href="{{club.web}}">{{club.web}}</a><br/>
+    </div>
+    <div class="item w100 odd"></div>
+    <div class="item w100">Contact :
+    {{club.nomcor}} {{club.prenomcor}}<br/>
+    Tel : {{club.telcor}}<br/>
+    Email : {{club.mailcor}}
+    </div>
+    <div class="item w100 odd"></div>
+
 </div>
+<button class="row button" ng-click="licencies()">Voir les licenciés ...</button>
+<button class="button w100 icon icon-uncheck" ng-click="fermer()" ng-if="club">Nouvelle recherche</button>

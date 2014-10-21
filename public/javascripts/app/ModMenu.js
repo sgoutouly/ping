@@ -7,7 +7,7 @@ var modMenu = angular.module("common.menu", []);
  */
 modMenu.controller("MenuCtrl", ["$scope", "$location", function($scope, $location){
 	$scope.navClass = function (page) {
-        var currentRoute = $location.path().substring(1) || 'menu';
+        var currentRoute = $location.path().substring() || 'menu';
         return page === currentRoute ? 'item-actif' : '';
     };        
 }]);

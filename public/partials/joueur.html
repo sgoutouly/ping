@@ -3,7 +3,7 @@
     <div class="item w100">
         {{joueur.nom}} {{joueur.prenom}} -  [{{joueur.categ}}]<br/>
         {{joueur.licence}}<br/>
-        {{joueur.club}}
+        <span ng-click="joueursParClub(joueur.nclub)">{{joueur.club}}</span>
     </div>
     <div class="item w100 odd"></div>
     <div class="item w100">Classement officiel : {{joueur.clast}} - {{joueur.valcla}}</div>

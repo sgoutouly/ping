@@ -13,7 +13,7 @@ pingApp.config(['$routeProvider',
 			controller : 'ErrorCtrl'
 		}).
 		otherwise({
-			redirectTo : '/joueurs/'
+			redirectTo : '/criteresRechJoueur'
 		});
 	}
 ])

@@ -82,4 +82,20 @@ public class XmlToJson {
         return jsonFiche;
     }
 
+    public static ObjectNode forClubs(String xml) {
+
+        final ObjectNode json = Json.newObject();
+        final ArrayNode clubs = json.putArray("clubs");
+        XmlSlicer.cut(xml).getTag("liste").getTags("club").forEach(
+                xmlNode -> {
+                    final ObjectNode club = Json.newObject();
+                    club.put("numero", xmlNode.get("numero").toString());
+                    club.put("nom", xmlNode.get("nom").toString());
+                    clubs.add(club);
+                }
+        );
+
+        return json;
+    }
+
 }

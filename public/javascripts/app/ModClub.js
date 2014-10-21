@@ -3,34 +3,107 @@
  */
 var modClub = angular.module("ping.club", []);
 
-/* 
- * Routage de ces contrôleurs
- */	
+/*
+ * Routage
+ */
 pingApp.config(['$routeProvider',
 		function($routeProvider) {
-			$routeProvider.
-  				when('/clubs/:numero', {
-    				templateUrl: '/assets/partials/club.html',
-    				controller: 'ClubCtrl'
-  				})
-  		}
+        $routeProvider. // Joueur pour une licence donnée
+            when('/clubs/:num', {
+                templateUrl: '/assets/partials/club.html',
+                controller: 'ClubCtrl'
+            }). // route de resultats de recherche multi critères
+            when('/criteresRechClub', {
+                templateUrl: '/assets/partials/rechClub.html',
+                controller: 'ClubCtrl'
+            }). // route de resultats de recherche multi critères
+            when('/rechClubs', {
+                templateUrl: '/assets/partials/clubs.html',
+                controller: 'ClubCtrl'
+            })
+   		}
 ])
 
 /**
- * Controleur du menu de navigation
+ * Le Controleur
  */
 modClub.controller("ClubCtrl", ["$scope", "$routeParams", "ComposantClub", function($scope, $routeParams, ComposantClub) {
-  $scope.club = ComposantClub.consulterClub($routeParams.numero);
+
+  $scope.clubs = undefined;
+  $scope.club = undefined;
+  $scope.messageWait = "";
+  $scope.deptClub = $routeParams.dept;
+  $scope.numClub = $routeParams.num;
+
+  /* Actions exécutées àl'ouverture de la page (au lancement du contrôleur) */
+
+  // Affichage du club associé au numero
+  if ($scope.numClub !== undefined) {
+    $scope.messageWait = "Chargement du club ..."
+    ComposantClub.consulterClub($scope.numClub).then(
+      function(club) {
+        if (club.idclub !== "") {
+            $scope.club = club;
+        }
+        $scope.messageWait = "";
+      }
+    );
+  } // Recherche par dept
+  else if($scope.deptClub !== undefined) {
+    $scope.messageWait = "Chargement des clubs ..."
+    ComposantClub.rechercherClubs($scope.deptClub).then(
+      function(data) {
+        if(data.clubs.length >= 1) {
+            $scope.clubs = data.clubs;
+        }
+        $scope.messageWait = "";
+      }
+    );
+  };
+
+  /* Action lancée depuis l'IHM */
+
+  // toutes recherches
+  $scope.lancerRecherche = function() {
+    if ($scope.numClub !== undefined) {
+      location.hash = "#/clubs/" + $scope.numClub;
+    }
+    else if ($scope.deptClub !== undefined) {
+      location.hash = "#/rechClubs?dept=" + $scope.deptClub;
+    }
+  };
+
+  // Consultation via numero
+  $scope.consulter = function(numClub) {
+    location.hash = "#/clubs/" + numClub;
+  };
+
+  $scope.licencies = function() {
+    location.hash = "#/clubs/" + $scope.numClub + "/joueurs";
+  };
+
+  // Retour à la recherche
+  $scope.fermer = function() {
+    location.hash = "#/criteresRechClub";
+  };
+
 }]);
 
 /**
- * Service rechercherListe
- * Enregistre la lise en cours de saisie
+ * La collection de services
  */
 modClub.factory("ComposantClub", ["$q", "toolbox_http", function($q, toolbox_http) {
    return {
-    consulterClub: function(numero) {
-      return toolbox_http.get("/clubs/" + numero);
+        // Consulter par numéro
+        consulterClub: function(numClub) {
+          var club = toolbox_http.get("/clubs/" + numClub);
+          return club;
+        }
+        ,
+        // Recherche par nom / prenom
+        rechercherClubs: function(deptClub) {
+          var clubs = toolbox_http.get("/clubs?d=" + deptClub);
+          return clubs;
+        }
     }
-   }
 }]);
