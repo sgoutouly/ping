@@ -5,6 +5,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.googlecode.xmlzen.XmlSlicer;
 import play.libs.Json;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by sylvain on 18/10/2014.
  */
@@ -33,7 +37,7 @@ public class XmlToJson {
         jsonFiche.put("valcla", xmlFiche.get("valcla").toString());
         jsonFiche.put("clpro", xmlFiche.get("clpro").toString());
         jsonFiche.put("valinit", xmlFiche.get("valinit").toString());
-
+        jsonFiche.put("etag", md5Digest(jsonFiche.toString()));
         return jsonFiche;
     }
 
@@ -53,7 +57,7 @@ public class XmlToJson {
                     joueurs.add(joueur);
                 }
         );
-
+        jsonFiche.put("etag", md5Digest(jsonFiche.toString()));
         return jsonFiche;
     }
 
@@ -79,6 +83,7 @@ public class XmlToJson {
         jsonFiche.put("latitude", xmlFiche.get("latitude").toString());
         jsonFiche.put("longitude", xmlFiche.get("longitude").toString());
 
+        jsonFiche.put("etag", md5Digest(jsonFiche.toString()));
         return jsonFiche;
     }
 
@@ -94,8 +99,31 @@ public class XmlToJson {
                     clubs.add(club);
                 }
         );
-
+        json.put("etag", md5Digest(json.toString()));
         return json;
+    }
+
+    /**
+     * md5Digest
+     *
+     * @param data
+     * @return String
+     */
+    public static String md5Digest(String data) {
+        try {
+            byte[] bytes = data.getBytes();
+            final MessageDigest md = MessageDigest.getInstance("MD5");
+            final byte[] messageDigest = md.digest(bytes);
+            final BigInteger number = new BigInteger(1, messageDigest);
+            // prepend a zero to get a "proper" MD5 hash value
+            final StringBuffer sb = new StringBuffer('0');
+            sb.append(number.toString(16));
+            return sb.toString();
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("MD5 cryptographic algorithm is not available.", e);
+        }
+
     }
 
 }

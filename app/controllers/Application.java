@@ -9,9 +9,6 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * @author sylvain
@@ -122,36 +119,15 @@ public class Application extends Controller {
      */
     private static Status handleEtag(JsonNode json) {
         final String askedEtag = request().getHeader(Controller.IF_NONE_MATCH);
-        if (askedEtag != null && askedEtag.equals(md5Digest(json.toString()))) {
+        final String currentEtag = json.get("etag").asText();
+        if (askedEtag != null && askedEtag.equals(currentEtag)) {
             return status(NOT_MODIFIED);
         }
         else {
-            response().setHeader(ETAG, md5Digest(json.toString()));
+            response().setHeader(ETAG, currentEtag);
             return ok(json);
         }
     }
 
-    /**
-     * md5Digest
-     *
-     * @param data
-     * @return String
-     */
-    public static String md5Digest(String data) {
-        try {
-            byte[] bytes = data.getBytes();
-            final MessageDigest md = MessageDigest.getInstance("MD5");
-            final byte[] messageDigest = md.digest(bytes);
-            final BigInteger number = new BigInteger(1, messageDigest);
-            // prepend a zero to get a "proper" MD5 hash value
-            final StringBuffer sb = new StringBuffer('0');
-            sb.append(number.toString(16));
-            return sb.toString();
-        }
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("MD5 cryptographic algorithm is not available.", e);
-        }
-
-    }
 
 }
