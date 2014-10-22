@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         livereload: true
       },
       app: {
-        files: ['public/*.*', 'app/views/*.html', 'public/partials/*.*']
+        files: ['public/*.*', 'public/partials/*.*']
       },
       scripts: {
         files: ['public/javascripts/app/*.js'],
