@@ -98,8 +98,10 @@ toolBoxDirectives.directive('tbMenuLeft', function() {
 	    /* Events initialisation */
 		window.addEventListener(START_EVENT, this, true);
 		shadow.addEventListener('click', this, true);
-		document.getElementById("menuBouton").addEventListener('click', function(e) {that.show()}, true);
-		
+		// gestion bouton si contenu dans les options
+		if (settings.button) {
+		    document.getElementById(settings.button).addEventListener('click', function(e) {that.show()}, true);
+		}
 		/**
 		 * Implementation of the handleEvent of the interface EventListener
 		 * @function {public void} handleEvent
@@ -343,7 +345,9 @@ toolBoxDirectives.directive('tbMenuLeft', function() {
 
     return {
     	link : function($scope, $element, attrs) {
-    		new DrawerMenu(document.getElementById(attrs.id)); 
+    	    var elt = document.getElementById(attrs.id); // Elt du DOM décoré par le menu
+    		var menu = new DrawerMenu(elt, {button : "menuBouton"}); // Le menu instancié
+            elt.addEventListener('click', function(e) {menu.hide()}, true); // On cache le menu quand on clique dessus
 	    }
 	}
 
