@@ -122,6 +122,12 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
     location.hash = "#/criteresRechJoueur";
   };
 
+  // Afficher club
+  $scope.afficherClub = function(numClub) {
+    location.hash = "#/clubs/" + numClub;
+  };
+
+
   // Retour
   $scope.retour = function() {
       history.back();
