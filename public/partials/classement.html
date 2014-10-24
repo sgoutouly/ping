@@ -1,5 +1,5 @@
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
-<button class="button w100 icon icon-bracket1" ng-click="retour()">Précédent</button>
+<button class="button w100 icon icon-bracket1" ng-click="retour()" ng-show="classement">Précédent</button>
 <ul ng-if="classement" class="pa0" class="list">
     <li class="mb1 animation-liste-fade-left" data-ng-repeat="equipe in classement | filter:f">
         <div class="item w100" ng-class-odd="'odd'" >
