@@ -58,7 +58,7 @@ modEquipe.controller("EquipeCtrl", ["$scope", "$routeParams", "ComposantEquipe",
   /* Action lancée depuis l'IHM */
 
    // classement d'une équipe
-  $scope.classement = function(division, poule) {
+  $scope.afficherClassement = function(division, poule) {
     location.hash = "#/classement/equipe?division=" + division + "&poule=" + poule;
   };
 
