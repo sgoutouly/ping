@@ -1,11 +1,14 @@
-GET     /joueurs                    controllers.Application.joueurs(n:String, p ?="")
-GET     /joueurs/:licence           controllers.Application.joueur(licence:String)
+GET     /joueurs                        controllers.Application.joueurs(n:String, p ?="")
+GET     /joueurs/:licence               controllers.Application.joueur(licence:String)
 
-GET     /clubs/:numero/joueurs      controllers.Application.joueursByClub(numero:String)
-GET     /clubs/:numero              controllers.Application.club(numero:String)
-GET     /clubs                      controllers.Application.clubs(d ?="33")
+GET     /classements/equipe             controllers.Application.classementEquipe(division:String, poule:String)
 
-GET     /                           controllers.Assets.at(path="/public", file = "index.html")
+GET     /clubs/:numero/equipes          controllers.Application.equipes(numero:String)
+GET     /clubs/:numero/joueurs          controllers.Application.joueursByClub(numero:String)
+GET     /clubs/:numero                  controllers.Application.club(numero:String)
+GET     /clubs                          controllers.Application.clubs(d ?="33")
+
+GET     /                               controllers.Assets.at(path="/public", file = "index.html")
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file                   controllers.Assets.at(path="/public", file)

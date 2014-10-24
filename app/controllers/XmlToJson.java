@@ -3,11 +3,13 @@ package controllers;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.googlecode.xmlzen.XmlSlicer;
+import org.apache.commons.lang3.StringUtils;
 import play.libs.Json;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.StringTokenizer;
 
 /**
  * Created by sylvain on 18/10/2014.
@@ -39,6 +41,55 @@ public class XmlToJson {
         jsonFiche.put("valinit", xmlFiche.get("valinit").toString());
         jsonFiche.put("etag", md5Digest(jsonFiche.toString()));
         return jsonFiche;
+    }
+
+    public static ObjectNode forEquipes(String xml) {
+
+        final ObjectNode json = Json.newObject();
+        final ArrayNode equipes = json.putArray("equipes");
+        XmlSlicer.cut(xml).getTag("liste").getTags("equipe").forEach(
+                xmlNode -> {
+                    final ObjectNode equipe = Json.newObject();
+                    equipe.put("libequipe", xmlNode.get("libequipe").toString());
+                    equipe.put("libdivision", xmlNode.get("libdivision").toString());
+                    final String[] tmp = xmlNode.get("liendivision").toString().split("&amp;");
+                    final String poule = tmp[0];
+                    final String division = tmp[1];
+                    equipe.put("cx_poule", StringUtils.substringAfter(tmp[0], "="));
+                    equipe.put("D1", StringUtils.substringAfter(tmp[1], "="));
+                    equipe.put("organisme_pere", StringUtils.substringAfter(tmp[2], "="));
+
+                    // Hypermédia avec HAL : lien relatif pour simplifier
+                    final ObjectNode link = Json.newObject();
+                    link.put("href", "/classements/equipe?" + division + "&" + poule);
+                    final ObjectNode links = Json.newObject();
+                    links.put("classement", link);
+                    equipe.put("_links", links);
+
+                    equipes.add(equipe);
+                }
+        );
+        json.put("etag", md5Digest(json.toString()));
+        return json;
+    }
+
+    public static ObjectNode forClassementEquipe(String xml) {
+
+        final ObjectNode json = Json.newObject();
+        final ArrayNode classements = json.putArray("classements");
+        XmlSlicer.cut(xml).getTag("liste").getTags("classement").forEach(
+                xmlNode -> {
+                    final ObjectNode classement = Json.newObject();
+                    classement.put("poule", xmlNode.get("poule").toString());
+                    classement.put("clt", xmlNode.get("clt").toString());
+                    classement.put("equipe", xmlNode.get("equipe").toString());
+                    classement.put("joue", xmlNode.get("joue").toString());
+                    classement.put("pts", xmlNode.get("pts").toString());
+                    classements.add(classement);
+                }
+        );
+        json.put("etag", md5Digest(json.toString()));
+        return json;
     }
 
     public static ObjectNode forJoueurs(String xml) {

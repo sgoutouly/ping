@@ -39,6 +39,33 @@ public class Application extends Controller {
         return joueur.map(json -> handleEtag(json));
     }
 
+
+    public static Promise<Result> equipes(String numClub) throws Exception {
+        Promise<JsonNode> joueur = Cache.getOrElse(
+                "equipes_" + numClub,
+                () -> WS.url("http://www.fftt.com/mobile/xml/xml_equipe.php?numclu=" + numClub + "&type=M")
+                        .get()
+                        .filter(response -> response.getStatus() == Http.Status.OK)
+                        .map(response -> XmlToJson.forEquipes(response.getBody()))
+                ,
+                60 * 60 * 24 * 30 // 30 jours en cache
+        );
+        return joueur.map(json -> handleEtag(json));
+    }
+
+    public static Promise<Result> classementEquipe(String division, String poule) throws Exception {
+        Promise<JsonNode> joueur = Cache.getOrElse(
+                "Classt_equipe_" + division + "_" + poule,
+                () -> WS.url("http://www.fftt.com/mobile/xml/xml_result_equ.php?auto=1&action=classement&D1=" + division + "&cx_poule=" + poule)
+                        .get()
+                        .filter(response -> response.getStatus() == Http.Status.OK)
+                        .map(response -> XmlToJson.forClassementEquipe(response.getBody()))
+                ,
+                60 * 60 * 24 // 1 jour en cache
+        );
+        return joueur.map(json -> handleEtag(json));
+    }
+
     /**
      *
      * @param nom
