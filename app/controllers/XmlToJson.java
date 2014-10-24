@@ -43,6 +43,26 @@ public class XmlToJson {
         return jsonFiche;
     }
 
+    public static ObjectNode forParties(String xml) {
+
+        final ObjectNode json = Json.newObject();
+        final ArrayNode parties = json.putArray("parties");
+        XmlSlicer.cut(xml).getTag("liste").getTags("resultat").forEach(
+                xmlNode -> {
+                    final ObjectNode partie = Json.newObject();
+                    partie.put("date", xmlNode.get("date").toString());
+                    partie.put("nom", xmlNode.get("nom").toString());
+                    partie.put("classement", xmlNode.get("classement").toString());
+                    partie.put("epreuve", xmlNode.get("epreuve").toString());
+                    partie.put("victoire", xmlNode.get("victoire").toString());
+                    partie.put("forfait", xmlNode.get("forfait").toString());
+                    parties.add(partie);
+                }
+        );
+        json.put("etag", md5Digest(json.toString()));
+        return json;
+    }
+
     public static ObjectNode forEquipes(String xml) {
 
         final ObjectNode json = Json.newObject();

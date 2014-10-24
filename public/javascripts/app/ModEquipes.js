@@ -62,6 +62,10 @@ modEquipe.controller("EquipeCtrl", ["$scope", "$routeParams", "ComposantEquipe",
     location.hash = "#/classement/equipe?division=" + division + "&poule=" + poule;
   };
 
+  // Retour
+  $scope.retour = function() {
+      history.back();
+  };
 
 }]);
 

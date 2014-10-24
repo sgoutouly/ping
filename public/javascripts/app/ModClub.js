@@ -93,6 +93,11 @@ modClub.controller("ClubCtrl", ["$scope", "$routeParams", "ComposantClub", funct
     location.hash = "#/criteresRechClub";
   };
 
+  // Retour
+  $scope.retour = function() {
+    history.back();
+  };
+
 }]);
 
 /**

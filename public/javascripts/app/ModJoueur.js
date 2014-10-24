@@ -12,11 +12,15 @@ pingApp.config(['$routeProvider',
             when('/joueurs/:licence', {
                 templateUrl: '/assets/partials/joueur.html',
                 controller: 'JoueurCtrl'
+            }). // Les joueurs pour un club donné
+            when('/joueurs/:licence/parties', {
+                templateUrl: '/assets/partials/parties.html',
+                controller: 'JoueurCtrl'
             }). // Les des joueurs pour un club donné
             when('/clubs/:club/joueurs', {
                 templateUrl: '/assets/partials/joueurs.html',
                 controller: 'JoueurCtrl'
-            }). // route de resultats de recherche multi critères
+            }). // route de formulaire de recherche multi critères
             when('/criteresRechJoueur', {
                 templateUrl: '/assets/partials/rechJoueur.html',
                 controller: 'JoueurCtrl'
@@ -35,6 +39,7 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
 
   $scope.joueurs = undefined;
   $scope.joueur = undefined;
+  $scope.parties = undefined;
   $scope.messageWait = "";
   $scope.licence = $routeParams.licence;
   $scope.nom = $routeParams.nom;
@@ -44,7 +49,7 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
   /* Actions exécutées àl'ouverture de la page (au lancement du contrôleur) */
 
   // Affichage du joueur associé à la licence
-  if ($scope.licence !== undefined) {
+  if ($scope.licence !== undefined && location.hash.indexOf("/parties") === -1) {
     $scope.messageWait = "Chargement du joueur ..."
     ComposantJoueur.consulterJoueur($scope.licence).then(
       function(joueur) {
@@ -52,6 +57,15 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
         $scope.messageWait = "";
       }
     );
+  } // Recherche des parties
+  else if($scope.licence !== undefined && location.hash.indexOf("/parties") !== -1) {
+     $scope.messageWait = "Chargement des parties ..."
+     ComposantJoueur.rechercherParties($scope.licence).then(
+       function(data) {
+         $scope.parties = data.parties;
+         $scope.messageWait = "";
+       }
+     );
   } // Recherche par nom / prenom
   else if($scope.nom !== undefined) {
     $scope.messageWait = "Chargement des joueurs ..."
@@ -93,6 +107,11 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
     location.hash = "#/joueurs/" + licence;
   };
 
+  // Parties via numero de licence
+  $scope.partiesDuJoueur = function() {
+    location.hash = "#/joueurs/" + $scope.licence + "/parties";
+  };
+
   // Joueurs par club
   $scope.joueursParClub = function(club) {
     location.hash = "#/clubs/" + club + "/joueurs";
@@ -100,7 +119,12 @@ modJoueur.controller("JoueurCtrl", ["$scope", "$routeParams", "ComposantJoueur",
 
   // Retour à la recherche
   $scope.fermer = function() {
-    location.hash = "#/joueurs/";
+    location.hash = "#/criteresRechJoueur";
+  };
+
+  // Retour
+  $scope.retour = function() {
+      history.back();
   };
 
 }]);
@@ -126,6 +150,10 @@ modJoueur.factory("ComposantJoueur", ["$q", "toolbox_http", function($q, toolbox
         rechercherParClub: function(club) {
           var joueurs = toolbox_http.get("/clubs/" + club + "/joueurs");
           return joueurs;
+        }
+        ,
+        rechercherParties : function(licence) {
+            return toolbox_http.get("/joueurs/" + licence + "/parties");
         }
     }
 }]);

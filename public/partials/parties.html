@@ -1,0 +1,17 @@
+<p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
+<button class="button w100 icon icon-bracket1" ng-click="retour()" ng-show="parties">Précédent</button>
+<ul ng-if="parties" class="pa0" class="list">
+    <li class="mb1 animation-liste-fade-left" data-ng-repeat="partie in parties | filter:f">
+        <div class="item w100" ng-class-odd="'odd'" >
+            <div class="txtleft">
+                <span>{{partie.nom}} ({{partie.classement}}) </span><br/>
+                <span>{{partie.epreuve}}</span><br/>
+                <span>{{partie.date}}</span>
+                <span class="right" style="color:blue" ng-if="partie.victoire === 'V'">VICTOIRE</span>
+                <span class="right" style="color:red" ng-if="partie.victoire === 'D'">DEFAITE</span>
+                <span class="right" ng-if="partie.forfait === '1'"> (par forfait)</span>
+            </div>
+        </div>
+    </li>
+</ul>
+

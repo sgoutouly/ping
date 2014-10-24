@@ -1,5 +1,6 @@
 GET     /joueurs                        controllers.Application.joueurs(n:String, p ?="")
 GET     /joueurs/:licence               controllers.Application.joueur(licence:String)
+GET     /joueurs/:licence/parties       controllers.Application.joueurParties(licence:String)
 
 GET     /classements/equipe             controllers.Application.classementEquipe(division:String, poule:String)
 

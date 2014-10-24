@@ -87,6 +87,25 @@ public class Application extends Controller {
     }
 
     /**
+     *
+     * @param licence
+     * @return
+     * @throws Exception
+     */
+    public static Promise<Result> joueurParties(String licence) throws Exception {
+        Promise<JsonNode> joueur = Cache.getOrElse(
+                "joueurParties_" + licence,
+                () -> WS.url("http://www.fftt.com/mobile/xml/xml_partie.php?numlic=" + licence)
+                        .get()
+                        .filter(response -> response.getStatus() == Http.Status.OK)
+                        .map(response -> XmlToJson.forParties(response.getBody()))
+                ,
+                60 * 60 * 24 // 24 heure en cache
+        );
+        return joueur.map(json -> handleEtag(json));
+    }
+
+    /**
      * @param numero
      * @return
      * @throws Exception

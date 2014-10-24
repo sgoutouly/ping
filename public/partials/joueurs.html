@@ -1,4 +1,5 @@
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
+<button class="button w100 icon icon-bracket1" ng-click="retour()" ng-show="joueurs">Précédent</button>
 <input ng-show="joueurs" placeholder="Filtrer les joueurs ..." class="input-text row" ng-model="f" />
 <ul ng-if="joueurs" class="pa0" class="list">
     <li class="mb1 animation-liste-fade-left" data-ng-repeat="joueur in joueurs | filter:f">

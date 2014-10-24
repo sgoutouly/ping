@@ -1,4 +1,5 @@
 <p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
+<button class="button w100 icon icon-bracket1" ng-click="retour()">Précédent</button>
 <div class="w100 animation-liste-fade-left" ng-if="club">
     <div class="item w100">
         {{club.nom}} -  [{{club.numero}}]<br/>
@@ -16,5 +17,4 @@
     <div class="item w100 odd"></div>
     <button class="row button" ng-click="licencies()">Voir les licenciés ...</button>
     <button class="row button" ng-click="equipes()">Voir les équipes ...</button>
-    <button class="button w100 icon icon-uncheck" ng-click="fermer()">Nouvelle recherche</button>
 </div>
