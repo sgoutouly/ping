@@ -1,0 +1,13 @@
+<p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
+<ul ng-if="classement" class="pa0" class="list">
+    <li class="mb1 animation-liste-fade-left" data-ng-repeat="equipe in classement | filter:f">
+        <div class="item w100" ng-class-odd="'odd'" >
+            <div class="txtleft">
+                <span>{{equipe.equipe}}</span><br/>
+                <span>Place : {{equipe.clt}}</span><br/>
+                <span>Matchs joués : {{equipe.joue}}</span><br/>
+                <span>Points : {{equipe.pts}}</span><br/>
+            </div>
+        </div>
+    </li>
+</ul>

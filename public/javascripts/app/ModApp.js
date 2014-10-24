@@ -9,7 +9,8 @@ var pingApp = angular.module("ping", [
   	"common.menu",
 	"common.errors",
 	"ping.club", 
-	"ping.joueur"
+	"ping.joueur",
+	"ping.equipe"
 ]);
 
 

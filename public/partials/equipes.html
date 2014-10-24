@@ -1,0 +1,12 @@
+<p class="txtcenter wait" ng-show="messageWait !== ''">{{messageWait}}</p>
+<input ng-show="equipes" placeholder="Filtrer les équipes ..." class="input-text row" ng-model="f" />
+<ul ng-if="equipes" class="pa0" class="list">
+    <li class="mb1 animation-liste-fade-left" data-ng-repeat="equipe in equipes | filter:f">
+        <div class="item w100" ng-class-odd="'odd'" ng-click="classement(equipe.D1, equipe.cx_poule)" >
+            <div class="txtleft">
+                <span>{{equipe.libequipe}}</span><br/>
+                <span>{{equipe.libdivision}}</span>
+            </div>
+        </div>
+    </li>
+</ul>

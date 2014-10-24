@@ -12,7 +12,7 @@ pingApp.config(['$routeProvider',
             when('/clubs/:num', {
                 templateUrl: '/assets/partials/club.html',
                 controller: 'ClubCtrl'
-            }). // route de resultats de recherche multi critères
+            }).// route de resultats de recherche multi critères
             when('/criteresRechClub', {
                 templateUrl: '/assets/partials/rechClub.html',
                 controller: 'ClubCtrl'
@@ -78,8 +78,14 @@ modClub.controller("ClubCtrl", ["$scope", "$routeParams", "ComposantClub", funct
     location.hash = "#/clubs/" + numClub;
   };
 
+// Consultation licenciés
   $scope.licencies = function() {
     location.hash = "#/clubs/" + $scope.numClub + "/joueurs";
+  };
+
+  // Consultation équipes
+  $scope.equipes = function() {
+    location.hash = "#/clubs/" + $scope.numClub + "/equipes";
   };
 
   // Retour à la recherche

@@ -76,7 +76,7 @@ public class XmlToJson {
     public static ObjectNode forClassementEquipe(String xml) {
 
         final ObjectNode json = Json.newObject();
-        final ArrayNode classements = json.putArray("classements");
+        final ArrayNode classements = json.putArray("classement");
         XmlSlicer.cut(xml).getTag("liste").getTags("classement").forEach(
                 xmlNode -> {
                     final ObjectNode classement = Json.newObject();
