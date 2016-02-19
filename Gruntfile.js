@@ -9,24 +9,25 @@ module.exports = function(grunt) {
       }
     },
 
+    karma: {
+      unit: { configFile: 'tests/karma.conf.js' }
+    },
+
     watch: {
       options: {
         livereload: true
       },
-      app: {
-        files: ['public/*.*', 'public/stylesheets/*.*', 'public/partials/*.*']
-      },
-      scripts: {
-        files: ['public/javascripts/app/*.js'],
+      build: {
+        files: ['public/javascripts/app/*.js', 'public/*.*', 'public/stylesheets/*.*', 'public/partials/*.*'],
         tasks: ['uglify']
       }
     },
 
   });
 
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-
 
   grunt.registerTask('default', ['watch']);
 
