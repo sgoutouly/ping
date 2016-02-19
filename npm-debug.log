@@ -1,94 +1,121 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'boostrap', '-save' ]
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'angular-mocks',
+1 verbose cli   '–save-dev' ]
 2 info using npm@2.0.2
 3 info using node@v0.10.25
 4 warn package.json ping@1.0.0 No repository field.
-5 verbose readDependencies using package.json deps
-6 verbose cache add [ 'boostrap', null ]
-7 verbose cache add spec="boostrap" args=["boostrap",null]
-8 verbose parsed spec { raw: 'boostrap',
-8 verbose parsed spec   scope: null,
-8 verbose parsed spec   name: 'boostrap',
-8 verbose parsed spec   rawSpec: '',
-8 verbose parsed spec   spec: '*',
-8 verbose parsed spec   type: 'range' }
-9 verbose parsed spec { raw: 'boostrap',
-9 verbose parsed spec   scope: null,
-9 verbose parsed spec   name: 'boostrap',
-9 verbose parsed spec   rawSpec: '',
-9 verbose parsed spec   spec: '*',
-9 verbose parsed spec   type: 'range' }
-10 verbose addNamed [ 'boostrap', '*' ]
-11 verbose addNamed [ null, '*' ]
-12 silly lockFile d34fb3e6-boostrap boostrap@*
-13 verbose lock boostrap@* /Users/sylvain/.npm/d34fb3e6-boostrap.lock
-14 silly addNameRange { name: 'boostrap', range: '*', hasData: false }
-15 verbose mapToRegistry name boostrap
-16 verbose mapToRegistry uri http://registry.npmjs.org/boostrap
-17 verbose request on initialization, where is /boostrap
-18 verbose request after pass 1, where is /boostrap
-19 verbose request url raw /boostrap
-20 verbose request resolving registry [ 'http://registry.npmjs.org/', './boostrap' ]
-21 verbose request after pass 2, where is http://registry.npmjs.org/boostrap
-22 verbose request no auth needed
-23 info attempt registry request try #1 at 10:45:42
-24 verbose request id 7d5b116ecb813461
-25 http request GET http://registry.npmjs.org/boostrap
-26 http 404 http://registry.npmjs.org/boostrap
-27 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-27 verbose headers   'content-type': 'application/json',
-27 verbose headers   'cache-control': 'max-age=0',
-27 verbose headers   'content-length': '52',
-27 verbose headers   'accept-ranges': 'bytes',
-27 verbose headers   date: 'Sun, 19 Oct 2014 08:45:45 GMT',
-27 verbose headers   via: '1.1 varnish',
-27 verbose headers   age: '0',
-27 verbose headers   connection: 'keep-alive',
-27 verbose headers   'x-served-by': 'cache-fra1223-FRA',
-27 verbose headers   'x-cache': 'MISS',
-27 verbose headers   'x-cache-hits': '0',
-27 verbose headers   'x-timer': 'S1413708344.563985,VS0,VE725' }
-28 silly registry.get cb [ 404,
-28 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-28 silly registry.get     'content-type': 'application/json',
-28 silly registry.get     'cache-control': 'max-age=0',
-28 silly registry.get     'content-length': '52',
-28 silly registry.get     'accept-ranges': 'bytes',
-28 silly registry.get     date: 'Sun, 19 Oct 2014 08:45:45 GMT',
-28 silly registry.get     via: '1.1 varnish',
-28 silly registry.get     age: '0',
-28 silly registry.get     connection: 'keep-alive',
-28 silly registry.get     'x-served-by': 'cache-fra1223-FRA',
-28 silly registry.get     'x-cache': 'MISS',
-28 silly registry.get     'x-cache-hits': '0',
-28 silly registry.get     'x-timer': 'S1413708344.563985,VS0,VE725' } ]
-29 silly lockFile d34fb3e6-boostrap boostrap@*
-30 silly lockFile d34fb3e6-boostrap boostrap@*
-31 verbose stack Error: 404 Not Found: boostrap
-31 verbose stack     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:258:14)
-31 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:197:65)
-31 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:237:22)
-31 verbose stack     at Request.EventEmitter.emit (events.js:98:17)
-31 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1146:14)
-31 verbose stack     at Request.EventEmitter.emit (events.js:117:20)
-31 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1097:12)
-31 verbose stack     at IncomingMessage.EventEmitter.emit (events.js:117:20)
-31 verbose stack     at _stream_readable.js:920:16
-31 verbose stack     at process._tickCallback (node.js:415:13)
-32 verbose statusCode 404
-33 verbose pkgid boostrap
-34 verbose cwd /Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping
-35 error Darwin 13.4.0
-36 error argv "node" "/usr/local/bin/npm" "install" "boostrap" "-save"
-37 error node v0.10.25
-38 error npm  v2.0.2
-39 error code E404
-40 error 404 Not Found: boostrap
-40 error 404
-40 error 404 'boostrap' is not in the npm registry.
-40 error 404 You should bug the author to publish it (or use the name yourself!)
-40 error 404 It was specified as a dependency of 'ping'
-40 error 404
-40 error 404 Note that you can also install from a
-40 error 404 tarball, folder, http url, or git url.
-41 verbose exit [ 1, true ]
+5 warn package.json karma-chrome-launcher@0.1.5 No README data
+6 warn package.json karma-qunit@0.1.4 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'angular-mocks', null ]
+9 verbose cache add spec="angular-mocks" args=["angular-mocks",null]
+10 verbose parsed spec { raw: 'angular-mocks',
+10 verbose parsed spec   scope: null,
+10 verbose parsed spec   name: 'angular-mocks',
+10 verbose parsed spec   rawSpec: '',
+10 verbose parsed spec   spec: '*',
+10 verbose parsed spec   type: 'range' }
+11 verbose cache add [ '–save-dev', null ]
+12 verbose cache add spec="–save-dev" args=["–save-dev",null]
+13 verbose parsed spec { raw: '–save-dev',
+13 verbose parsed spec   scope: null,
+13 verbose parsed spec   name: null,
+13 verbose parsed spec   rawSpec: '–save-dev',
+13 verbose parsed spec   spec: '/Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping/–save-dev',
+13 verbose parsed spec   type: 'local' }
+14 verbose parsed spec { raw: 'angular-mocks',
+14 verbose parsed spec   scope: null,
+14 verbose parsed spec   name: 'angular-mocks',
+14 verbose parsed spec   rawSpec: '',
+14 verbose parsed spec   spec: '*',
+14 verbose parsed spec   type: 'range' }
+15 verbose addNamed [ 'angular-mocks', '*' ]
+16 verbose addNamed [ null, '*' ]
+17 verbose parsed spec { raw: '/Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping/–save-dev',
+17 verbose parsed spec   scope: null,
+17 verbose parsed spec   name: null,
+17 verbose parsed spec   rawSpec: '/Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping/–save-dev',
+17 verbose parsed spec   spec: '/Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping/–save-dev',
+17 verbose parsed spec   type: 'local' }
+18 silly lockFile 8ac6d172-angular-mocks angular-mocks@*
+19 verbose lock angular-mocks@* /Users/sylvain/.npm/8ac6d172-angular-mocks.lock
+20 silly addNameRange { name: 'angular-mocks', range: '*', hasData: false }
+21 verbose mapToRegistry name angular-mocks
+22 verbose mapToRegistry uri http://registry.npmjs.org/angular-mocks
+23 verbose request on initialization, where is /angular-mocks
+24 verbose request after pass 1, where is /angular-mocks
+25 verbose request url raw /angular-mocks
+26 verbose request resolving registry [ 'http://registry.npmjs.org/', './angular-mocks' ]
+27 verbose request after pass 2, where is http://registry.npmjs.org/angular-mocks
+28 verbose request no auth needed
+29 info attempt registry request try #1 at 14:05:46
+30 verbose request id 816b26dc1b0bf150
+31 http request GET http://registry.npmjs.org/angular-mocks
+32 http 200 http://registry.npmjs.org/angular-mocks
+33 silly registry.get cb [ 200,
+33 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+33 silly registry.get     etag: '"4SDUVFRPYSJMJRM7R7BEQTJWU"',
+33 silly registry.get     'content-type': 'application/json',
+33 silly registry.get     'cache-control': 'max-age=60',
+33 silly registry.get     'content-length': '18040',
+33 silly registry.get     'accept-ranges': 'bytes',
+33 silly registry.get     date: 'Sat, 29 Nov 2014 13:05:47 GMT',
+33 silly registry.get     via: '1.1 varnish',
+33 silly registry.get     age: '0',
+33 silly registry.get     connection: 'keep-alive',
+33 silly registry.get     'x-served-by': 'cache-lcy1123-LCY',
+33 silly registry.get     'x-cache': 'MISS',
+33 silly registry.get     'x-cache-hits': '0',
+33 silly registry.get     'x-timer': 'S1417266347.202607,VS0,VE615',
+33 silly registry.get     vary: 'Accept' } ]
+34 silly addNameRange number 2 { name: 'angular-mocks', range: '*', hasData: true }
+35 silly addNameRange versions [ 'angular-mocks',
+35 silly addNameRange   [ '1.2.18',
+35 silly addNameRange     '1.2.19',
+35 silly addNameRange     '1.2.20',
+35 silly addNameRange     '1.2.21',
+35 silly addNameRange     '1.2.22',
+35 silly addNameRange     '1.2.25',
+35 silly addNameRange     '1.3.0-rc.5',
+35 silly addNameRange     '1.3.0',
+35 silly addNameRange     '1.3.1',
+35 silly addNameRange     '1.3.2',
+35 silly addNameRange     '1.3.3',
+35 silly addNameRange     '1.3.4-build.3588',
+35 silly addNameRange     '1.2.27',
+35 silly addNameRange     '1.3.4' ] ]
+36 verbose addNamed [ 'angular-mocks', '1.3.4' ]
+37 verbose addNamed [ '1.3.4', '1.3.4' ]
+38 silly lockFile 2e12ec4f-angular-mocks-1-3-4 angular-mocks@1.3.4
+39 verbose lock angular-mocks@1.3.4 /Users/sylvain/.npm/2e12ec4f-angular-mocks-1-3-4.lock
+40 silly lockFile aa2be5d6-ar-mocks-angular-mocks-1-3-4-tgz http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz
+41 verbose lock http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz /Users/sylvain/.npm/aa2be5d6-ar-mocks-angular-mocks-1-3-4-tgz.lock
+42 verbose addRemoteTarball [ 'http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz',
+42 verbose addRemoteTarball   'acff568fc5a713a404846480519b5ffcf0b65d0c' ]
+43 info retry fetch attempt 1 at 14:05:48
+44 info attempt registry request try #1 at 14:05:48
+45 http fetch GET http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz
+46 http fetch 200 http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz
+47 silly fetchAndShaCheck shasum acff568fc5a713a404846480519b5ffcf0b65d0c
+48 silly lockFile aa2be5d6-ar-mocks-angular-mocks-1-3-4-tgz http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz
+49 silly lockFile aa2be5d6-ar-mocks-angular-mocks-1-3-4-tgz http://registry.npmjs.org/angular-mocks/-/angular-mocks-1.3.4.tgz
+50 silly lockFile 2e12ec4f-angular-mocks-1-3-4 angular-mocks@1.3.4
+51 silly lockFile 2e12ec4f-angular-mocks-1-3-4 angular-mocks@1.3.4
+52 silly lockFile 8ac6d172-angular-mocks angular-mocks@*
+53 silly lockFile 8ac6d172-angular-mocks angular-mocks@*
+54 verbose stack Error: couldn't figure out how to install /Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping/–save-dev
+54 verbose stack     at addNonLocal (/usr/local/lib/node_modules/npm/lib/cache.js:310:12)
+54 verbose stack     at /usr/local/lib/node_modules/npm/lib/cache.js:279:20
+54 verbose stack     at Object.oncomplete (evalmachine.<anonymous>:107:15)
+55 verbose cwd /Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping
+56 error Darwin 14.0.0
+57 error argv "node" "/usr/local/bin/npm" "install" "angular-mocks" "–save-dev"
+58 error node v0.10.25
+59 error npm  v2.0.2
+60 error couldn't figure out how to install /Users/sylvain/dvpt/activator-1.2.10-minimal/projects/ping/–save-dev
+61 error If you need help, you may report this error at:
+61 error     <http://github.com/npm/npm/issues>
+62 verbose exit [ 1, true ]

@@ -29,6 +29,7 @@ pingApp.config(['$routeProvider',
  */
 modClub.controller("ClubCtrl", ["$scope", "$routeParams", "ComposantClub", function($scope, $routeParams, ComposantClub) {
 
+  document.getElementById('coucou');
   $scope.clubs = undefined;
   $scope.club = undefined;
   $scope.messageWait = "";
